@@ -137,7 +137,7 @@ El diagrama E/R completo se encuentra en `/diagrams/diagrama-er.png`.
 
 ## 👤 Autor
 
-- **Nombre:** Tu nombre aquí
+- **Nombre:** Alejandro Criado Pérez
 - **GitHub:** [@AlejandroCriado-tech](https://github.com/AlejandroCriado-tech)
 - **Centro:** Prometeo by The Power Education — DAM Virtual, 1º curso
 - **Período:** Marzo – Mayo 2025
