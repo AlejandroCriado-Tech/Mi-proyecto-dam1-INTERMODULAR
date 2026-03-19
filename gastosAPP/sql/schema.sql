@@ -1,7 +1,7 @@
 -- ============================================
 -- GastosApp — Script de creación de base de datos
 -- Módulo: Bases de Datos (0484)
--- Autor: Tu nombre aquí
+-- Autor: Alejandro Criado Pérez
 -- ============================================
 
 CREATE DATABASE IF NOT EXISTS gastosapp
