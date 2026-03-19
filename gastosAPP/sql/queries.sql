@@ -1,7 +1,7 @@
 -- ============================================
 -- GastosApp — Consultas del proyecto
 -- Módulo: Bases de Datos (0484)
--- Autor: Tu nombre aquí
+-- Autor: Alejandro Criado Pérez
 -- ============================================
 
 USE gastosapp;
