@@ -1,0 +1,25 @@
+
+GASTOSAPP
+│
+├── CAPA MODEL (los datos)
+│   ├── Usuario      → representa un usuario de la app
+│   ├── Categoria    → representa una categoría de gasto
+│   ├── Gasto        → representa un gasto concreto
+│   └── Presupuesto  → representa un límite mensual
+│
+├── CAPA SERVICE (la lógica, habla con la BD)
+│   ├── ConexionDB       → abre y cierra la conexión JDBC
+│   ├── GastoService     → añadir, editar, borrar, listar gastos
+│   ├── CategoriaService → listar categorías
+│   └── PresupuestoService → gestionar presupuestos y alertas
+│
+├── CAPA CONTROLLER (conecta la vista con el service)
+│   ├── MainController
+│   ├── GastoController
+│   └── PresupuestoController
+│
+└── CAPA VIEW (las pantallas JavaFX)
+    ├── Main.java         → arranca la app
+    ├── main.fxml         → pantalla principal con menú
+    ├── gastos.fxml       → listado y formulario de gastos
+    └── presupuesto.fxml  → pantalla de presupuestos
