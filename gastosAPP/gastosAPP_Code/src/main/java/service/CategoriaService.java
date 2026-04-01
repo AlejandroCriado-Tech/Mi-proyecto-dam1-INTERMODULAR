@@ -1,4 +1,4 @@
-package servicie;
+package service;
 
 public class CategoriaService {
 }
