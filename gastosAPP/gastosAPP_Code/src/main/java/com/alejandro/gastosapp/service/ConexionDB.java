@@ -33,4 +33,14 @@ public class ConexionDB {
 
         return instancia;
     }
+    public static void cerrarConexion() {
+        try {
+            if (instancia != null && !instancia.isClosed()) {
+                instancia.close();
+                System.out.println("🔒 Conexión cerrada correctamente.");
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
 }
