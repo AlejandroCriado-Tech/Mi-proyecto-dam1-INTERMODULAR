@@ -1,4 +1,4 @@
-package service;
+package com.alejandro.gastosapp.service;
 
 
 import java.sql.Connection;
