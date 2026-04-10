@@ -38,7 +38,7 @@ public class MainController {
     // ============================================================
     @FXML
     private void abrirGastos(ActionEvent event) {
-        cambiarPantalla("/com/alejandro/gastosapp/view/gastos.fxml", "GastosApp — Mis Gastos");
+        cambiarPantalla("/com/example/gastosapp_code/gastos.fxml", "GastosApp — Mis Gastos");
     }
 
     // ============================================================
@@ -47,7 +47,7 @@ public class MainController {
     // ============================================================
     @FXML
     private void abrirPresupuestos(ActionEvent event) {
-        cambiarPantalla("/com/alejandro/gastosapp/view/presupuesto.fxml", "GastosApp — Presupuestos");
+        cambiarPantalla("/com/example/gastosapp_code/presupuesto.fxml", "GastosApp — Presupuestos");
     }
 
     // ============================================================

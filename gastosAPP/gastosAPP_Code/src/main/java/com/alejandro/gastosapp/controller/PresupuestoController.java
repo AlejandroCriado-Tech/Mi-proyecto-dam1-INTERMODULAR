@@ -208,7 +208,7 @@ public class PresupuestoController implements Initializable {
     private void volver(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/com/alejandro/gastosapp/view/main.fxml"));
+                    "/com/example/gastosapp_code/main.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnVolver.getScene().getWindow();
             stage.setTitle("GastosApp");

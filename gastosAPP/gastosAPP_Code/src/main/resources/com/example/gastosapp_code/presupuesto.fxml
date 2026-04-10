@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    presupuesto.fxml — Pantalla de gestión de presupuestos
+    Controlador: PresupuestoController.java
+
+    Autor: Alejandro Criado Pérez
+-->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.alejandro.gastosapp.controller.PresupuestoController"
+      spacing="12"
+      style="-fx-background-color: #f4f4f4;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="🎯 Presupuestos"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <!-- ===== TABLA DE PRESUPUESTOS ===== -->
+    <TableView fx:id="tablaPresupuestos" prefHeight="220">
+        <columns>
+            <TableColumn fx:id="colId"        text="ID"          prefWidth="50"/>
+            <TableColumn fx:id="colCategoria" text="Categoría"   prefWidth="100"/>
+            <TableColumn fx:id="colLimite"    text="Límite (€)"  prefWidth="100"/>
+            <TableColumn fx:id="colMes"       text="Mes"         prefWidth="60"/>
+            <TableColumn fx:id="colAnio"      text="Año"         prefWidth="70"/>
+        </columns>
+    </TableView>
+
+    <!-- ===== FORMULARIO AÑADIR PRESUPUESTO ===== -->
+    <Label text="Añadir presupuesto"
+           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ComboBox fx:id="cmbCategoria" promptText="Categoría (vacío = global)" prefWidth="200"/>
+        <TextField fx:id="txtLimite" promptText="Límite * (ej: 500)" prefWidth="130"/>
+        <ComboBox fx:id="cmbMes"     promptText="Mes *"              prefWidth="80"/>
+        <TextField fx:id="txtAnio"   promptText="Año *"              prefWidth="80"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="➕ Añadir presupuesto" onAction="#añadirPresupuesto"
+                style="-fx-background-color: #3498db; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="🗑️ Eliminar" onAction="#eliminarPresupuesto"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- ===== RESUMEN MENSUAL ===== -->
+    <Label text="Resumen mensual"
+           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ComboBox fx:id="cmbMesResumen" promptText="Mes" prefWidth="80"/>
+        <TextField fx:id="txtAnioResumen" promptText="Año" prefWidth="80"/>
+        <Button text="Ver resumen" onAction="#verResumen"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Labels donde se mostrará el resultado -->
+    <Label fx:id="lblTotalGastado"
+           text="Total gastado: —"
+           style="-fx-font-size: 14px; -fx-text-fill: #2c3e50;"/>
+
+    <Label fx:id="lblAlerta"
+           text="Estado: —"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <!-- ===== BOTÓN VOLVER ===== -->
+    <Button fx:id="btnVolver" text="⬅️ Volver al menú" onAction="#volver"
+            style="-fx-background-color: #7f8c8d; -fx-text-fill: white;
+                   -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+</VBox>

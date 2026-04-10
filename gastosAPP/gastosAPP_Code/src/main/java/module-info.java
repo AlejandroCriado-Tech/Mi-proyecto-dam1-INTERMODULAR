@@ -1,10 +1,12 @@
-module com.example.gastosapp_code {
+module com.alejandro.gastosapp {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires static lombok;
 
+    opens com.alejandro.gastosapp.controller to javafx.fxml;
+    opens com.alejandro.gastosapp.model to javafx.base;
+    opens com.alejandro.gastosapp.view to javafx.fxml;
 
-    opens com.example.gastosapp_code to javafx.fxml;
-    exports com.example.gastosapp_code;
+    exports com.alejandro.gastosapp.view;
 }

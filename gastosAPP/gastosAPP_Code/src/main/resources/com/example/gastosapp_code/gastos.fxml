@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<!--
+    gastos.fxml — Pantalla de gestión de gastos
+    Controlador: GastoController.java
+
+    Autor: Alejandro Criado Pérez
+-->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.alejandro.gastosapp.controller.GastoController"
+      spacing="12"
+      style="-fx-background-color: #f4f4f4;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="📋 Mis Gastos"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <!-- ===== TABLA DE GASTOS ===== -->
+    <TableView fx:id="tablaGastos" prefHeight="250">
+        <columns>
+            <TableColumn fx:id="colId"          text="ID"          prefWidth="50"/>
+            <TableColumn fx:id="colCategoria"   text="Categoría"   prefWidth="100"/>
+            <TableColumn fx:id="colImporte"     text="Importe (€)" prefWidth="100"/>
+            <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="200"/>
+            <TableColumn fx:id="colFecha"       text="Fecha"       prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- ===== FORMULARIO AÑADIR / EDITAR ===== -->
+    <Label text="Añadir / Editar gasto"
+           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ComboBox fx:id="cmbCategoria" promptText="Categoría *" prefWidth="150"/>
+        <TextField fx:id="txtImporte"    promptText="Importe * (ej: 25.50)" prefWidth="150"/>
+        <TextField fx:id="txtDescripcion" promptText="Descripción"           prefWidth="200"/>
+        <DatePicker fx:id="dpFecha"      promptText="Fecha *"               prefWidth="150"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="➕ Añadir"   onAction="#añadirGasto"
+                style="-fx-background-color: #3498db; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="✏️ Editar"   onAction="#editarGasto"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="🗑️ Eliminar" onAction="#eliminarGasto"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- ===== FILTROS ===== -->
+    <Label text="Filtros y búsqueda"
+           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ComboBox fx:id="cmbFiltroCategoria" promptText="Filtrar por categoría" prefWidth="180"/>
+        <Button text="Filtrar" onAction="#filtrarPorCategoria"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <DatePicker fx:id="dpFiltroDesde" promptText="Desde" prefWidth="150"/>
+        <DatePicker fx:id="dpFiltroHasta" promptText="Hasta" prefWidth="150"/>
+        <Button text="Filtrar por fecha" onAction="#filtrarPorFecha"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="txtBuscar" promptText="Buscar por descripción..." prefWidth="250"/>
+        <Button text="🔍 Buscar" onAction="#buscar"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- ===== BOTÓN VOLVER ===== -->
+    <Button fx:id="btnVolver" text="⬅️ Volver al menú" onAction="#volver"
+            style="-fx-background-color: #7f8c8d; -fx-text-fill: white;
+                   -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+</VBox>
