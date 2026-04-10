@@ -1,177 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    datos.xml — Exportación de gastos de GastosApp
+    datos-incorrecto.xml — XML con errores INTENCIONADOS
     Módulo: Lenguajes de Marcas y Sistemas de Gestión de Información (0373)
     Autor: Alejandro Criado Pérez
 
-    Este XML representa una exportación real de los gastos
-    del usuario 1 (Alejandro Criado) almacenados en la base de datos.
-    Está validado por el esquema esquema.xsd.
+    Este archivo demuestra que el esquema.xsd detecta correctamente
+    los errores cuando el XML no cumple las restricciones definidas.
+
+    ERRORES INTENCIONADOS:
+    1. Email sin @ → falla tipoEmail (pattern)
+    2. Importe negativo → falla tipoImporte (minExclusive value="0")
+    3. Mes = 15 → falla tipoMes (maxInclusive value="12")
+    4. Año = 1999 → falla tipoAnio (minInclusive value="2020")
+    5. Nombre vacío → falla tipoNombre (minLength value="2")
 -->
 <gastosapp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="esquema.xsd">
 
-    <!-- Información del usuario que exporta los datos -->
     <usuario>
         <id>1</id>
-        <nombre>Alejandro Criado</nombre>
-        <email>alejandro@email.com</email>
+        <nombre>A</nombre> <!-- ❌ ERROR 5: nombre de 1 carácter, mínimo 2 -->
+        <email>alejandroSINarroba.com</email> <!-- ❌ ERROR 1: email sin @ -->
         <fecha_registro>2026-01-10</fecha_registro>
     </usuario>
 
-    <!-- Listado de categorías disponibles -->
     <categorias>
         <categoria>
             <id>1</id>
             <nombre>Alimentación</nombre>
-            <descripcion>Supermercado, restaurantes y comida en general</descripcion>
-        </categoria>
-        <categoria>
-            <id>2</id>
-            <nombre>Transporte</nombre>
-            <descripcion>Gasolina, transporte público, taxi, etc.</descripcion>
-        </categoria>
-        <categoria>
-            <id>3</id>
-            <nombre>Ocio</nombre>
-            <descripcion>Cine, conciertos, salidas, entretenimiento</descripcion>
-        </categoria>
-        <categoria>
-            <id>4</id>
-            <nombre>Salud</nombre>
-            <descripcion>Farmacia, médico, gimnasio</descripcion>
-        </categoria>
-        <categoria>
-            <id>5</id>
-            <nombre>Hogar</nombre>
-            <descripcion>Alquiler, luz, agua, internet, limpieza</descripcion>
-        </categoria>
-        <categoria>
-            <id>6</id>
-            <nombre>Ropa</nombre>
-            <descripcion>Ropa, calzado y accesorios</descripcion>
-        </categoria>
-        <categoria>
-            <id>7</id>
-            <nombre>Tecnología</nombre>
-            <descripcion>Dispositivos, suscripciones digitales, apps</descripcion>
-        </categoria>
-        <categoria>
-            <id>8</id>
-            <nombre>Otros</nombre>
-            <descripcion>Gastos no clasificados en otras categorías</descripcion>
+            <descripcion>Supermercado y restaurantes</descripcion>
         </categoria>
     </categorias>
 
-    <!-- Listado de gastos exportados -->
     <gastos>
         <gasto>
             <id>1</id>
             <id_categoria>1</id_categoria>
             <categoria>Alimentación</categoria>
-            <importe>85.30</importe>
-            <descripcion>Compra semanal Mercadona</descripcion>
-            <fecha>2026-01-05</fecha>
-        </gasto>
-        <gasto>
-            <id>2</id>
-            <id_categoria>2</id_categoria>
-            <categoria>Transporte</categoria>
-            <importe>50.00</importe>
-            <descripcion>Abono transporte mensual</descripcion>
-            <fecha>2026-01-07</fecha>
-        </gasto>
-        <gasto>
-            <id>3</id>
-            <id_categoria>3</id_categoria>
-            <categoria>Ocio</categoria>
-            <importe>12.50</importe>
-            <descripcion>Cine con amigos</descripcion>
-            <fecha>2026-01-10</fecha>
-        </gasto>
-        <gasto>
-            <id>4</id>
-            <id_categoria>5</id_categoria>
-            <categoria>Hogar</categoria>
-            <importe>650.00</importe>
-            <descripcion>Alquiler enero</descripcion>
-            <fecha>2026-01-01</fecha>
-        </gasto>
-        <gasto>
-            <id>5</id>
-            <id_categoria>1</id_categoria>
-            <categoria>Alimentación</categoria>
-            <importe>42.10</importe>
+            <importe>-25.00</importe> <!-- ❌ ERROR 2: importe negativo, debe ser mayor que 0 -->
             <descripcion>Compra supermercado</descripcion>
-            <fecha>2026-01-14</fecha>
-        </gasto>
-        <gasto>
-            <id>6</id>
-            <id_categoria>7</id_categoria>
-            <categoria>Tecnología</categoria>
-            <importe>9.99</importe>
-            <descripcion>Suscripción Netflix</descripcion>
-            <fecha>2026-01-15</fecha>
-        </gasto>
-        <gasto>
-            <id>7</id>
-            <id_categoria>4</id_categoria>
-            <categoria>Salud</categoria>
-            <importe>18.50</importe>
-            <descripcion>Farmacia</descripcion>
-            <fecha>2026-01-18</fecha>
-        </gasto>
-        <gasto>
-            <id>8</id>
-            <id_categoria>1</id_categoria>
-            <categoria>Alimentación</categoria>
-            <importe>67.80</importe>
-            <descripcion>Compra semanal Mercadona</descripcion>
-            <fecha>2026-01-21</fecha>
-        </gasto>
-        <gasto>
-            <id>9</id>
-            <id_categoria>3</id_categoria>
-            <categoria>Ocio</categoria>
-            <importe>45.00</importe>
-            <descripcion>Cena restaurante</descripcion>
-            <fecha>2026-01-25</fecha>
-        </gasto>
-        <gasto>
-            <id>10</id>
-            <id_categoria>6</id_categoria>
-            <categoria>Ropa</categoria>
-            <importe>35.99</importe>
-            <descripcion>Camisetas Zara</descripcion>
-            <fecha>2026-01-28</fecha>
+            <fecha>2026-01-05</fecha>
         </gasto>
     </gastos>
 
-    <!-- Presupuestos del usuario -->
     <presupuestos>
         <presupuesto>
             <id>1</id>
-            <id_categoria xsi:nil="true"/>
             <categoria>Global</categoria>
             <limite>1200.00</limite>
-            <mes>1</mes>
-            <anio>2026</anio>
-        </presupuesto>
-        <presupuesto>
-            <id>4</id>
-            <id_categoria>1</id_categoria>
-            <categoria>Alimentación</categoria>
-            <limite>200.00</limite>
-            <mes>1</mes>
-            <anio>2026</anio>
-        </presupuesto>
-        <presupuesto>
-            <id>7</id>
-            <id_categoria>3</id_categoria>
-            <categoria>Ocio</categoria>
-            <limite>80.00</limite>
-            <mes>1</mes>
-            <anio>2026</anio>
+            <mes>15</mes>   <!-- ❌ ERROR 3: mes 15 no existe, máximo 12 -->
+            <anio>1999</anio> <!-- ❌ ERROR 4: año 1999, mínimo permitido 2020 -->
         </presupuesto>
     </presupuestos>
 
