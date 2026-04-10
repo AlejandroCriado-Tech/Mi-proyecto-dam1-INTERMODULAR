@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    esquema.xsd — Esquema de validación para datos.xml
+    Módulo: Lenguajes de Marcas y Sistemas de Gestión de Información (0373)
+    Autor: Alejandro Criado Pérez
+
+    Este XSD define la estructura, tipos de datos y restricciones
+    que debe cumplir cualquier XML de exportación de GastosApp.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ============================================================
+         ELEMENTO RAÍZ: gastosapp
+         Contiene usuario, categorias, gastos y presupuestos
+    ============================================================ -->
+    <xs:element name="gastosapp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usuario"       type="tipoUsuario"/>
+                <xs:element name="categorias"    type="tipoCategorias"/>
+                <xs:element name="gastos"        type="tipoGastos"/>
+                <xs:element name="presupuestos"  type="tipoPresupuestos"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ============================================================
+         TIPO: tipoUsuario
+    ============================================================ -->
+    <xs:complexType name="tipoUsuario">
+        <xs:sequence>
+            <xs:element name="id"               type="xs:positiveInteger"/>
+            <xs:element name="nombre"           type="tipoNombre"/>
+            <xs:element name="email"            type="tipoEmail"/>
+            <xs:element name="fecha_registro"   type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoCategorias — lista de categorías
+    ============================================================ -->
+    <xs:complexType name="tipoCategorias">
+        <xs:sequence>
+            <!-- Mínimo 1 categoría, máximo 20 -->
+            <xs:element name="categoria" type="tipoCategoria" minOccurs="1" maxOccurs="20"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoCategoria — una categoría individual
+    ============================================================ -->
+    <xs:complexType name="tipoCategoria">
+        <xs:sequence>
+            <xs:element name="id"           type="xs:positiveInteger"/>
+            <xs:element name="nombre"       type="tipoNombre"/>
+            <xs:element name="descripcion"  type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoGastos — lista de gastos
+    ============================================================ -->
+    <xs:complexType name="tipoGastos">
+        <xs:sequence>
+            <!-- Mínimo 1 gasto, sin límite máximo -->
+            <xs:element name="gasto" type="tipoGasto" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoGasto — un gasto individual
+    ============================================================ -->
+    <xs:complexType name="tipoGasto">
+        <xs:sequence>
+            <xs:element name="id"           type="xs:positiveInteger"/>
+            <xs:element name="id_categoria" type="xs:positiveInteger"/>
+            <xs:element name="categoria"    type="tipoNombre"/>
+            <xs:element name="importe"      type="tipoImporte"/>
+            <xs:element name="descripcion"  type="xs:string" minOccurs="0"/>
+            <xs:element name="fecha"        type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoPresupuestos — lista de presupuestos
+    ============================================================ -->
+    <xs:complexType name="tipoPresupuestos">
+        <xs:sequence>
+            <xs:element name="presupuesto" type="tipoPresupuesto" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPO: tipoPresupuesto — un presupuesto individual
+    ============================================================ -->
+    <xs:complexType name="tipoPresupuesto">
+        <xs:sequence>
+            <xs:element name="id"           type="xs:positiveInteger"/>
+            <!-- id_categoria puede ser nulo si es presupuesto global -->
+            <xs:element name="id_categoria" nillable="true" minOccurs="0">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:anyAttribute namespace="##other" processContents="lax"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="categoria"    type="xs:string"/>
+            <xs:element name="limite"       type="tipoImporte"/>
+            <xs:element name="mes"          type="tipoMes"/>
+            <xs:element name="anio"         type="tipoAnio"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         TIPOS SIMPLES CON RESTRICCIONES
+         Aquí definimos reglas específicas para cada tipo de dato
+    ============================================================ -->
+
+    <!-- Nombre: entre 2 y 100 caracteres -->
+    <xs:simpleType name="tipoNombre">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Email: debe contener @ -->
+    <xs:simpleType name="tipoEmail">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Importe: número decimal mayor que 0 -->
+    <xs:simpleType name="tipoImporte">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+            <xs:totalDigits value="10"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Mes: número entero entre 1 y 12 -->
+    <xs:simpleType name="tipoMes">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Año: número de 4 dígitos entre 2020 y 2099 -->
+    <xs:simpleType name="tipoAnio">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="2020"/>
+            <xs:maxInclusive value="2099"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
