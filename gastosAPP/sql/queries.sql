@@ -45,7 +45,7 @@ FROM GASTO g
 JOIN CATEGORIA c ON g.id_categoria = c.id_categoria
 WHERE g.id_usuario = 1
   AND MONTH(g.fecha) = 1
-  AND YEAR(g.fecha)  = 2025
+  AND YEAR(g.fecha)  = 2026
 GROUP BY c.id_categoria, c.nombre
 ORDER BY total DESC;
 
@@ -126,5 +126,5 @@ SELECT
 FROM GASTO g
 JOIN CATEGORIA c ON g.id_categoria = c.id_categoria
 WHERE g.id_usuario = 1
-  AND g.fecha BETWEEN '2025-01-01' AND '2025-01-31'
+  AND g.fecha BETWEEN '2026-01-01' AND '2026-01-31'
 ORDER BY g.fecha;
