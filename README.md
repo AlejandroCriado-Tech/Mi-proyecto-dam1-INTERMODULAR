@@ -144,6 +144,3 @@ El diagrama E/R completo se encuentra en `/diagrams/diagrama-er.png`.
 
 ---
 
-## 📅 Estado del proyecto
-
-🟡 En desarrollo — Fase 1: Diseño de base de datos y estructura inicial
